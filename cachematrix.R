@@ -7,7 +7,12 @@ makeCacheMatrix <- function(x = matrix()) {
   get <- function() x
   setInv <- function(turnMatrix) inv <<- turnMatrix
   getInv <- function() inv
-  list(set = set, get = get, setInverse = setInv, getInverse = getInv)
+  
+  # stores the functions described above
+  list(set = set, 
+       get = get, 
+       setInverse = setInv, 
+       getInverse = getInv)
 }
 
 
@@ -15,7 +20,7 @@ cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'
   inv <- x$getInverse()
   if(!is.null(inv)){
-    message("loading cached mean...")
+    message("getting cached mean...")
     return(inv)
   }
   data <- x$get()
@@ -23,3 +28,4 @@ cacheSolve <- function(x, ...) {
   x$setInverse(inv)
   inv      
 }
+
